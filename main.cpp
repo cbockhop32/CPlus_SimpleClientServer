@@ -27,7 +27,7 @@ int main()
     // Endpoint (TCP)
     boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address("93.184.216.34", ec), 80);
 
-    // Creating a socket that the context will run in
+    // Creating a socket that will run within the context
     boost::asio::ip::tcp::socket socket(ioContext);
 
     // Connecting socket
@@ -56,6 +56,8 @@ int main()
         using namespace std::chrono_literals;
         std::this_thread::sleep_for(2000ms);
 
+
+        // close context
         ioContext.stop();
         if(threadContext.joinable()) threadContext.join();
       
